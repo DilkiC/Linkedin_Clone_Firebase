@@ -4,6 +4,11 @@ import {Button,TextInput} from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin,GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
+GoogleSignin.configure({
+  webClientId: '1022932489646-sgimo7isbqrp73b8cimk5hdc6m9g60hs.apps.googleusercontent.com',
+});
+
+
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -12,6 +17,57 @@ export default class Login extends Component {
         password:''
     };
   }
+
+
+  //user login....................
+  userLogin =()=>{
+    auth()
+    .signInWithEmailAndPassword(this.state.email, this.state.password)
+    .then((user) => {
+        console.log(user);
+        console.log('User logged in!');
+    })
+    .catch(error => {
+      console.log('login failed');
+    });
+  }
+
+
+  //..............google sign in.........................
+  onGoogleButtonPress = async () => {
+
+    // Get the users ID token
+  const { idToken } = await GoogleSignin.signIn();
+
+  // Create a Google credential with the token
+  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+  // Sign-in the user with the credential
+  return auth().signInWithCredential(googleCredential);
+  console.log((await user).user);
+
+  }
+
+
+
+  //..................... alerts.............................
+  loggedAlert = () =>
+    Alert.alert(
+      "Login",
+      "Logged in",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
+    );
+
+
+
+
 
   render() {
     return (
@@ -45,17 +101,18 @@ export default class Login extends Component {
         /> 
 
         <Button  mode='' color='#3742fa'  labelStyle={{fontSize:10,fontWeight:'bold',}}  style={styles.forgot}>Forgot password?</Button>
-        <Button  mode='contained' color='#3742fa'  labelStyle={{fontSize:14}}  style={styles.signBtn}>Sign in</Button>
+        <Button onPress={this.userLogin}  mode='contained' color='#3742fa'  labelStyle={{fontSize:14}}  style={styles.signBtn}>Sign in</Button>
 
         <Text style={{color:"gray",alignSelf:'center',margin:10}}>or</Text>
 
-        {/* {<GoogleSigninButton
+        {<GoogleSigninButton
         style={styles.signBtn}
         size={GoogleSigninButton.Size.Wide}
         color={GoogleSigninButton.Color.Dark}
-        onPress={()=>{this.onGoogleButtonPress}}
+        onPress={this.onGoogleButtonPress}
         />
-} */}
+        }
+
         <View style={{flexDirection: 'row',alignSelf:'center',marginTop:20,}}>
         <Text style={{color:"gray",margin:10,fontWeight:'bold',}}>New to Linkedin?</Text>
         <Button  mode='' color='#3742fa'  labelStyle={{fontSize:10,fontWeight:'bold',}}  style={{color:'blue',marginTop:5,}}>Join now</Button>
@@ -89,7 +146,7 @@ const styles=StyleSheet.create({
 
     },
     desc:{
-        alignSelf:'center',fontSize:12,color:'gray',fontWeight:'bold',marginBottom:40,    
+        alignSelf:'center',fontSize:12,color:'gray',fontWeight:'bold',marginBottom:20,    
     },
     forgot:{
         

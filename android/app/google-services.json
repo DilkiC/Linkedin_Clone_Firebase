@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1022932489646",
+    "project_id": "linkedin-app-9ff69",
+    "storage_bucket": "linkedin-app-9ff69.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022932489646:android:48052bdcb1f206170f243f",
+        "android_client_info": {
+          "package_name": "com.linkfiredilki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022932489646-9jpns7g1d7n8btr8i0ufr9jefrh3bhka.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.linkfiredilki",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1022932489646-sgimo7isbqrp73b8cimk5hdc6m9g60hs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAFeKztKyIR_s7F2Skbl4IBJyY1CApT8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1022932489646-sgimo7isbqrp73b8cimk5hdc6m9g60hs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
