@@ -4,6 +4,8 @@ import {Button,TextInput} from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin,GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
+import Register from './Register';
+
 GoogleSignin.configure({
   webClientId: '1022932489646-sgimo7isbqrp73b8cimk5hdc6m9g60hs.apps.googleusercontent.com',
 });
@@ -115,7 +117,11 @@ export default class Login extends Component {
 
         <View style={{flexDirection: 'row',alignSelf:'center',marginTop:20,}}>
         <Text style={{color:"gray",margin:10,fontWeight:'bold',}}>New to Linkedin?</Text>
-        <Button  mode='' color='#3742fa'  labelStyle={{fontSize:10,fontWeight:'bold',}}  style={{color:'blue',marginTop:5,}}>Join now</Button>
+        <Button  mode='' color='#3742fa'  labelStyle={{fontSize:10,fontWeight:'bold',}}  style={{color:'blue',marginTop:5,}}
+        onPress={() => {
+          this.props.navigation.navigate('register');
+        }}
+        >Join now</Button>
 
         </View>
       </View>

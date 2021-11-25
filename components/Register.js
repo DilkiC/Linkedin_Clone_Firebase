@@ -3,6 +3,8 @@ import {  View, Text,StyleSheet,ImageBackground, KeyboardAvoidingView, Alert } f
 import {Button,TextInput} from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 
+import Login from './Login';
+
 export default class Register extends Component {
   constructor(props) {
     super(props);
@@ -71,7 +73,11 @@ export default class Register extends Component {
             <Text style={styles.logo1} >Linked </Text>
             <Text style={styles.logo2}>in</Text>
             <Text style={styles.join}>Join now</Text>
-            <Button mode='outlined' color='blue'   labelStyle={{fontSize:10}}  style={styles.signin}>Sign in</Button>
+            <Button mode='outlined' color='blue'   labelStyle={{fontSize:10}}  style={styles.signin}
+            onPress={()=>{
+              this.props.navigation.navigate('login')
+            }}
+            >Sign in</Button>
             </View>
             
            <Text style={styles.para}>Welcome to your professional community</Text>
