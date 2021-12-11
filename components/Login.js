@@ -63,6 +63,7 @@ export default class Login extends Component {
   // Sign-in the user with the credential
   return auth().signInWithCredential(googleCredential);
   console.log((await user).user);
+  await GoogleSignin.signOut();
 
   }
 

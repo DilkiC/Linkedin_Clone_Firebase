@@ -14,11 +14,12 @@ export default class AddPost extends Component {
     this.state = {
         imagePath:'',
         imageName:'',
-        url:'',
         post:'',
+        imageUrl:'',
         
         
-    };
+        
+    }
   }
 
   getImageFromGallery = () => {
@@ -43,18 +44,19 @@ export default class AddPost extends Component {
   uploadImage = async () =>{
 
     //const fileName = this.state.imageName + ".jpg";
-    const fileName = this.state.imageName;
-    const reference = storage().ref(`images/${fileName}.jpg`); //creating images folder and uploading images
+    const fileName = this.state.imageName + ".jpg";
+    const reference = storage().ref(`images/${fileName}`); //creating images folder and uploading images
     await reference.putFile(this.state.imagePath);
 
     this.setState({
-      url:await storage().ref(`images/${fileName}.jpg`).getDownloadURL()
+      imageUrl:await storage().ref(`images/${fileName}.jpg`).getDownloadURL()
   })
-  console.log(this.state.url);
+  console.log(this.state.imageUrl);
+ 
 
-    /* const url = await storage().ref(`images/${fileName}`).getDownloadURL();
-    console.log(url);
-    this.state.url=url; */
+   /*  const url = await storage().ref(`images/${fileName}`).getDownloadURL();
+    console.log("image url: "+url); */
+    
 
 
   }
@@ -64,9 +66,8 @@ export default class AddPost extends Component {
     .collection('posts')
     .add({
       //userId:this.state.userId,
-      url:this.state.url,
+      url:this.state.imageUrl,
       post:this.state.post,
-      
       postTime:firestore.Timestamp.fromDate(new Date()),
       likes:null,
       comments:null,
@@ -77,7 +78,7 @@ export default class AddPost extends Component {
       console.log('post added!');
       Alert.alert("Post Published");
       this.setState({
-          url:"",
+          imageUrl:"",
           imageName:"",
           imagePath:"",
           post:'',
@@ -93,17 +94,10 @@ export default class AddPost extends Component {
   render() {
     return (
       <View>
-        <Text> AddPost </Text>
-
-        <Button  mode="contained" onPress={this.getImageFromGallery}>
-        Select Image
-        </Button>
-
-       
-
+        <Text style={styles.logo1}> Share </Text>
 
         <TextInput
-        label="What's your mind"
+        label="What's on your mind"
         
         value={this.state.post}
         onChangeText={text => this.setState(
@@ -112,18 +106,36 @@ export default class AddPost extends Component {
           style={styles.input}       
         />
 
+        <Button style={styles.signin} mode="outlined" onPress={this.getImageFromGallery}>
+        Select Image
+        </Button>
+
+        <Image 
+        style={styles.postImage}
+        source={{ uri: this.state.imageUrl }}/>
+
+     {/*  <Image 
+        style={styles.postImage}
+        source={this.props.url ? {uri:this.props.url} : null}/> */}
+
+
+       
+
+
+       
+
         <TouchableOpacity  
             onPress = {
                 this.savePost
             }
             >
-              <Text style={{color: 'blue',fontSize:16}} >Post </Text>
+              <Text style={{color: 'blue',fontSize:16,alignSelf:'center',backgroundColor:'white',}} >Post </Text>
         </TouchableOpacity>
 
 
 
 
-        <Button mode='outlined' color='blue'   labelStyle={{fontSize:10}}  style={styles.signin}
+        <Button mode='outlined' color='blue'   labelStyle={{fontSize:10}}  style={styles.join}
             onPress={()=>{
               this.props.navigation.navigate('home')
             }}
@@ -136,9 +148,9 @@ export default class AddPost extends Component {
 const styles=StyleSheet.create({
     input:{
         alignSelf:'center',
-        width:300,
+        width:350,
         height:50,
-        marginBottom:10,
+        marginBottom:10,marginTop:15,
         backgroundColor:'white', borderColor:'gray',
         fontSize:12,
         
@@ -152,7 +164,7 @@ const styles=StyleSheet.create({
   
     },
     join:{
-        fontWeight:'bold',color:'gray',marginTop:20,fontSize:12,marginLeft:110,marginRight:10,
+        fontWeight:'bold',color:'gray',marginTop:180,fontSize:12,
   
     },
     signin:{
@@ -164,6 +176,10 @@ const styles=StyleSheet.create({
     },
     joinBtn:{
         fontWeight:'bold',marginTop:40,borderRadius:20,borderColor:'blue',width:300,alignSelf:'center',
+    },
+    postImage: {
+      height: 100,
+      width: 360
     }
   
   

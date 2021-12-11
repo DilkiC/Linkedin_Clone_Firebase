@@ -41,8 +41,8 @@ export default class Home extends Component {
   render() {
     return (
       <View>
-        <Text> Home </Text>
-        <Text>{this.props.userName}</Text>
+        
+        {/* <Text>{this.props.userName}</Text> */}
 
 
 
@@ -57,11 +57,13 @@ export default class Home extends Component {
                     data={this.state.data}
                     renderItem={({ item }) => (
                         <View style={{ height: 150, flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                            <Text >User ID: {item.key}</Text>
-                            <Text>{item.post}</Text>
                             <Image
-                        style={{width: 350,height: 350}}
-                        source={{url: item.url}}/>
+                        style={styles.postImage}
+                        source={{uri: item.url}}/>
+                            
+                            {/* <Text >User ID: {item.key}</Text> */}
+                            <Text >{item.post}</Text>
+                            
                             
                         </View>
                     )}
@@ -105,7 +107,7 @@ const styles=StyleSheet.create({
 
   },
   signin:{
-      fontWeight:'bold',marginTop:15,borderRadius:20,borderColor:'blue',marginBottom:10,
+      fontWeight:'bold',marginTop:15,borderRadius:20,borderColor:'gray',marginBottom:10,
   },
   para:{
       fontSize:28,marginTop:20,color:'#d59667',marginLeft:15,marginBottom:30,
@@ -113,6 +115,11 @@ const styles=StyleSheet.create({
   },
   joinBtn:{
       fontWeight:'bold',marginTop:40,borderRadius:20,borderColor:'blue',width:300,alignSelf:'center',
+  },
+  postImage: {
+    height: 300,
+    width: 300,
+    //marginBottom:200,
   }
 
 

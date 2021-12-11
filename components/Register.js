@@ -18,7 +18,7 @@ export default class Register extends Component {
         userName:'',
         email:'',
         password:'',
-        isChecked:false,
+        //isChecked:false,
     };
     auth().onAuthStateChanged((user) => {
       if (user) {
@@ -125,7 +125,7 @@ export default class Register extends Component {
           style={styles.input}       
         />
 
-              <CheckBox
+              {/* <CheckBox
                 style={styles.checkBox}
                     onClick={()=>{
                     this.setState({
@@ -134,7 +134,7 @@ export default class Register extends Component {
                     }}
                     isChecked={this.state.isChecked}
                     leftText={"CheckBox"}
-                    />
+                    /> */}
 
     <Button onPress={this.registerUser} mode='contained' color='#3742fa'  labelStyle={{fontSize:14}}  style={styles.joinBtn}>Join</Button>
 
