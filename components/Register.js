@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import {  View, Text,StyleSheet,ImageBackground, KeyboardAvoidingView, Alert } from 'react-native';
 import {Button,TextInput} from 'react-native-paper';
+import { Checkbox } from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
+import { GoogleSignin,GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 import Login from './Login';
+
+GoogleSignin.configure({
+  webClientId: '1022932489646-sgimo7isbqrp73b8cimk5hdc6m9g60hs.apps.googleusercontent.com',
+});
 
 export default class Register extends Component {
   constructor(props) {
@@ -11,8 +17,15 @@ export default class Register extends Component {
     this.state = {
         userName:'',
         email:'',
-        password:''
+        password:'',
+        isChecked:false,
     };
+    auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log('User Name: ', user.displayName);
+      }
+    });
+    
   }
 
 //.........register user.................
@@ -20,7 +33,7 @@ export default class Register extends Component {
     auth()
   .createUserWithEmailAndPassword(this.state.email, this.state.password)
   .then((createdUser) => {
-    createdUser.user.updateProfile({
+      createdUser.user.updateProfile({
       displayName:this.state.userName
     })
 
@@ -111,6 +124,17 @@ export default class Register extends Component {
           )} 
           style={styles.input}       
         />
+
+              <CheckBox
+                style={styles.checkBox}
+                    onClick={()=>{
+                    this.setState({
+                        isChecked:!this.state.isChecked
+                    })
+                    }}
+                    isChecked={this.state.isChecked}
+                    leftText={"CheckBox"}
+                    />
 
     <Button onPress={this.registerUser} mode='contained' color='#3742fa'  labelStyle={{fontSize:14}}  style={styles.joinBtn}>Join</Button>
 

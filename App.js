@@ -10,8 +10,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Firestore from './components/Firestore';
 import LoadAll from './components/LoadAll';
-import FileUpload from './components/FileUpload';
 import Home from './components/Home';
+import AddPost from './components/AddPost';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +29,7 @@ export default class App extends Component {
         <Stack.Screen name="login" component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name="register" component={Register} options={{ headerShown: false }}/>
         <Stack.Screen name="home" component={Home} options={{ headerShown: false }}/>
+        <Stack.Screen name="post" component={AddPost} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
     );

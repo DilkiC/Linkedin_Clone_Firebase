@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {  View, Text,StyleSheet,ImageBackground } from 'react-native';
 import {Button,TextInput} from 'react-native-paper';
+import { Checkbox } from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin,GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 import Register from './Register';
+import Home from './Home';
 
 GoogleSignin.configure({
   webClientId: '1022932489646-sgimo7isbqrp73b8cimk5hdc6m9g60hs.apps.googleusercontent.com',
@@ -16,18 +18,32 @@ export default class Login extends Component {
     super(props);
     this.state = {
         email:'',
-        password:''
+        password:'',
+        username:'',
+        isChecked:false,
     };
+    const user=auth().currentUser;
+
+    if(user){
+      console.log("user email:",user.email);
+    }
+
+
+
   }
 
 
-  //user login....................
+  //user login....................password--->dilki1997
   userLogin =()=>{
     auth()
     .signInWithEmailAndPassword(this.state.email, this.state.password)
     .then((user) => {
         console.log(user);
         console.log('User logged in!');
+    })
+    .then(()=>{
+      this.props.navigation.navigate('home',{username:this.state.username})
+
     })
     .catch(error => {
       console.log('login failed');
