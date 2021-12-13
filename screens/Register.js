@@ -1,4 +1,4 @@
-/* import React, { Component } from 'react';
+import React, { Component } from 'react';
 import {  View, Text,StyleSheet,ImageBackground, KeyboardAvoidingView, Alert } from 'react-native';
 import {Button,TextInput} from 'react-native-paper';
 import { Checkbox } from 'react-native-paper';
@@ -78,6 +78,8 @@ export default class Register extends Component {
 
   render() {
     return (
+      /*         <ImageBackground source={require("assert/Rose.jpg")}style={styles.backImg}>
+ */
         <KeyboardAvoidingView behavior='position'  style={{backgroundColor:'white'}}>
 
             <View style={{flexDirection: 'row'}}>
@@ -123,13 +125,22 @@ export default class Register extends Component {
           style={styles.input}       
         />
 
-              
+              {/* <CheckBox
+                style={styles.checkBox}
+                    onClick={()=>{
+                    this.setState({
+                        isChecked:!this.state.isChecked
+                    })
+                    }}
+                    isChecked={this.state.isChecked}
+                    leftText={"CheckBox"}
+                    /> */}
 
     <Button onPress={this.registerUser} mode='contained' color='#3742fa'  labelStyle={{fontSize:14}}  style={styles.joinBtn}>Join</Button>
 
      
     </KeyboardAvoidingView>
-   
+   /*  </ImageBackground> */
     );
   }
 }
@@ -171,4 +182,4 @@ const styles=StyleSheet.create({
   
 
 });
- */
+

@@ -1,12 +1,12 @@
-/* import React, { Component } from 'react';
+import React, { Component } from 'react';
 import {  View, Text,StyleSheet,ImageBackground } from 'react-native';
 import {Button,TextInput} from 'react-native-paper';
 import { Checkbox } from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin,GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
-import Register from './Register';
-import Home from './Home';
+import Register from '../screens/Register';
+import Home from '../screens/Home';
 
 GoogleSignin.configure({
   webClientId: '1022932489646-sgimo7isbqrp73b8cimk5hdc6m9g60hs.apps.googleusercontent.com',
@@ -180,4 +180,4 @@ const styles=StyleSheet.create({
 
     
 
-}); */
+});

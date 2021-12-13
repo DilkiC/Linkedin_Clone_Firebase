@@ -23,14 +23,14 @@ export default class Home extends Component {
          
         Users.push({ 
                 post:documentSnapshot.data().post,
-                url:documentSnapshot.data().url,
+                imageUrl:documentSnapshot.data().url,
                 key: documentSnapshot.id,
             })
         });
         this.setState({
             data:Users
         })
-        console.log(this.url)
+        console.log(this.imageUrl)
       });
 }
 
@@ -59,9 +59,9 @@ export default class Home extends Component {
                         <View style={{ height: 150, flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                             <Image
                         style={styles.postImage}
-                        source={{uri: item.url}}/>
+                        source={{uri: item.imageUrl}}/>
                             
-                            {/* <Text >User ID: {item.key}</Text> */}
+                            <Text >User ID: {item.key}</Text>
                             <Text >{item.post}</Text>
                             
                             
